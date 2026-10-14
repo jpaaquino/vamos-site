@@ -137,11 +137,11 @@ def privacy_pt():
 <p>Transferências para fora do Espaço Econômico Europeu (por exemplo, para os EUA) são feitas com garantias adequadas, como as Cláusulas Contratuais Padrão da Comissão Europeia ou o EU-US Data Privacy Framework, quando aplicável. Não vendemos nem compartilhamos dados para publicidade.</p>
 <h2>5. Por quanto tempo guardamos</h2><ul>
 <li>Dados locais: até você apagar o App ou limpar os dados do navegador.</li>
-<li>Conta e progresso na nuvem: enquanto a conta existir. Depois de um pedido de exclusão, apagamos em até 30 dias.</li>
+<li>Conta e progresso na nuvem: enquanto a conta existir. A exclusão pelo App é imediata. Pedidos por e-mail são atendidos em até 30 dias.</li>
 <li>Registros de compra: pelo prazo exigido pela legislação fiscal e contábil.</li>
 <li>Logs técnicos: pelo período de retenção do provedor.</li></ul>
 <h2>6. Como apagar seus dados</h2>
-<p>Sem conta: desinstale o App (ou limpe os dados do site no navegador) e tudo some do aparelho. Com conta: peça a exclusão da conta e do progresso pelo e-mail <a href="mailto:{EMAIL}">{EMAIL}</a>, a partir do endereço cadastrado. Apagar a conta <b>não cancela</b> uma assinatura: cancele na App Store ou no Google Play.</p>
+<p>Sem conta: desinstale o App (ou limpe os dados do site no navegador) e tudo some do aparelho. Com conta: no App, abra <b>Sua conta → Apagar conta</b>. A conta e o progresso na nuvem são apagados na hora. Se você não tiver mais acesso ao App, peça pelo e-mail <a href="mailto:{EMAIL}">{EMAIL}</a>. Veja <a href="apagar-conta.html">Como apagar sua conta</a>. Apagar a conta <b>não cancela</b> uma assinatura: cancele na App Store ou no Google Play.</p>
 <h2>7. Idade mínima</h2>
 <p>O App é destinado a pessoas com <b>14 anos ou mais</b> (idade de consentimento digital na Espanha, segundo a LOPDGDD), ou com a idade mínima exigida no seu país, se for maior. Se você tiver menos idade, só use o App com autorização e supervisão do seu responsável legal. Para crianças e adolescentes no Brasil, o tratamento segue o melhor interesse do menor (art. 14 da LGPD). Se soubermos que coletamos dados de uma criança sem autorização, vamos apagá-los.</p>
 <h2>8. Seus direitos (RGPD / LOPDGDD, Espanha e UE)</h2>
@@ -178,10 +178,10 @@ def privacy_en():
 <p>Transfers outside the European Economic Area (for example, to the USA) rely on appropriate safeguards, such as the European Commission's Standard Contractual Clauses or the EU-US Data Privacy Framework where applicable. We do not sell data or share it for advertising.</p>
 <h2>5. Retention</h2><ul>
 <li>Local data: until you delete the App or clear your browser data.</li>
-<li>Cloud account and progress: while the account exists. After a deletion request, deleted within 30 days.</li>
+<li>Cloud account and progress: while the account exists. Deletion in the App is immediate. Email requests are handled within 30 days.</li>
 <li>Purchase records: as long as tax and accounting law requires.</li>
 <li>Technical logs: for the provider's retention period.</li></ul>
-<h2>6. Deleting your data</h2><p>Without an account: uninstall the App (or clear the site data in your browser) and everything is gone from the device. With an account: request deletion of your account and progress by emailing <a href="mailto:{EMAIL}">{EMAIL}</a> from your registered address. Deleting the account <b>does not cancel</b> a subscription: cancel it in the App Store or Google Play.</p>
+<h2>6. Deleting your data</h2><p>Without an account: uninstall the App (or clear the site data in your browser) and everything is gone from the device. With an account: in the App, open <b>Sua conta → Apagar conta</b> (Account → Delete account). The account and its cloud progress are deleted immediately. If you can no longer use the App, email <a href="mailto:{EMAIL}">{EMAIL}</a>. See <a href="delete-account.html">How to delete your account</a>. Deleting the account <b>does not cancel</b> a subscription: cancel it in the App Store or Google Play.</p>
 <h2>7. Minimum age</h2><p>The App is meant for people <b>aged 14 or over</b> (the digital-consent age in Spain under the LOPDGDD), or the minimum age required in your country if that is higher. If you are younger, use the App only with your parent's or guardian's permission and supervision. If we learn that we collected a child's data without that permission, we will delete it.</p>
 <h2>8. Your rights (GDPR / LOPDGDD)</h2><p>You have the right of access, rectification, erasure, objection, restriction and portability, and the right not to be subject to solely automated decisions. Email <a href="mailto:{EMAIL}">{EMAIL}</a>; we reply within one month. You may also complain to the <b>Spanish Data Protection Agency (AEPD)</b> at <a href="https://www.aepd.es">www.aepd.es</a>.</p>
 <h2>9. Brazil (LGPD)</h2><p>You may request confirmation of processing, access, correction, anonymisation, blocking or deletion, portability, information about sharing, and review of automated decisions (LGPD art. 18). You may also complain to the <b>ANPD</b>. The legal bases we use are contract, legal obligation and legitimate interest.</p>
@@ -241,7 +241,30 @@ def terms_en():
 <h2>12. Changes</h2><p>We may update these terms. Material changes will be announced in the App or on this page, with a new effective date.</p></main>"""
     page("en", "en/terms.html", f"Terms & Conditions — {APP}", b, "../termos.html")
 
+def delete_pages():
+    pt = f"""<main class="doc"><h1>Como apagar sua conta do {APP}</h1><p class="meta">Atualizado em {DATE_PT}</p>
+<h2>No App (recomendado)</h2><ol><li>Abra o {APP} e toque no ícone da sua conta.</li><li>Toque em <b>Apagar conta</b>.</li><li>Confirme em <b>Apagar para sempre</b>.</li></ol>
+<p>A exclusão é imediata e permanente: apagamos sua conta (e-mail e senha), seu perfil e todo o progresso salvo na nuvem. Neste aparelho, o App volta para o modo visitante.</p>
+<h2>Por e-mail</h2><p>Se você não consegue usar o App, escreva para <a href="mailto:{EMAIL}?subject=Apagar%20conta">{EMAIL}</a> a partir do e-mail da conta, com o assunto “Apagar conta”. Apagamos em até 30 dias e confirmamos por e-mail.</p>
+<h2>O que é apagado e o que fica</h2><ul><li><b>Apagado</b>: conta, perfil, lições concluídas, XP, ofensiva, carimbos, revisões.</li>
+<li><b>Fica</b>: registros de compra que a lei fiscal obriga a guardar, mantidos pela Apple/Google e pela RevenueCat, e logs técnicos de segurança até expirarem.</li>
+<li>Progresso de visitante no seu aparelho: apague desinstalando o App.</li></ul>
+<h2>Assinatura</h2><p><b>Apagar a conta não cancela a assinatura.</b> Cancele na loja: <a href="https://support.apple.com/pt-br/118428">App Store (Apple)</a> ou <a href="https://support.google.com/googleplay/answer/7018481?hl=pt-BR">Google Play</a>.</p>
+<p>Mais detalhes na <a href="privacidade.html">Política de Privacidade</a>.</p></main>"""
+    page("pt", "apagar-conta.html", f"Apagar conta — {APP}", pt, "en/delete-account.html")
+    en = f"""<main class="doc"><h1>How to delete your {APP} account</h1><p class="meta">Updated {DATE_EN}</p>
+<h2>In the App (recommended)</h2><ol><li>Open {APP} and tap your account icon.</li><li>Tap <b>Apagar conta</b> (Delete account).</li><li>Confirm with <b>Apagar para sempre</b> (Delete forever).</li></ol>
+<p>Deletion is immediate and permanent: we delete your account (email and password), your profile and all progress saved in the cloud. On this device, the App goes back to guest mode.</p>
+<h2>By email</h2><p>If you can't use the App, email <a href="mailto:{EMAIL}?subject=Delete%20account">{EMAIL}</a> from your account address with the subject “Delete account”. We delete within 30 days and confirm by email.</p>
+<h2>What is deleted and what is kept</h2><ul><li><b>Deleted</b>: account, profile, completed lessons, XP, streak, stamps, review items.</li>
+<li><b>Kept</b>: purchase records that tax law requires (held by Apple/Google and RevenueCat) and technical security logs until they expire.</li>
+<li>Guest progress on your device: remove it by uninstalling the App.</li></ul>
+<h2>Subscription</h2><p><b>Deleting your account does not cancel your subscription.</b> Cancel it in the store: <a href="https://support.apple.com/en-us/118428">App Store (Apple)</a> or <a href="https://support.google.com/googleplay/answer/7018481?hl=en">Google Play</a>.</p>
+<p>More in the <a href="privacy.html">Privacy Policy</a>.</p></main>"""
+    page("en", "en/delete-account.html", f"Delete account — {APP}", en, "../apagar-conta.html")
+
 open(os.path.join(ROOT, "style.css"), "w").write(CSS)
+delete_pages()
 landing("pt"); landing("en"); privacy_pt(); privacy_en(); terms_pt(); terms_en()
 open(os.path.join(ROOT, ".nojekyll"), "w").write("")
 # aliases so /privacy and /terms also work in PT root and /en/privacidade etc.
