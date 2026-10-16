@@ -5,4 +5,4 @@ Landing-page screenshots were refreshed on 2026-10-16 from vamos-app commit `847
 
 Public website: https://vamos.acedigitallabs.com
 
-GitHub Pages publishes `main` from the repository root. Keep the `CNAME` file when regenerating the site. HostGator DNS routes the `vamos` subdomain to `joao-bot80.github.io` with a CNAME record.
+GitHub Pages publishes `main` from the repository root. Keep the `CNAME` file when regenerating the site. HostGator DNS routes the `vamos` subdomain to `jpaaquino.github.io` with a CNAME record.
