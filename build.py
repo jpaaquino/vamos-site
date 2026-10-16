@@ -3,8 +3,8 @@
 import os
 APP = "¡Vamos!"                      # store name may become "Vamos Espanha!" — change only here
 OWNER = "Joao Paulo de Araujo Aquino"
-NIF = "[NIF/NIE]"
-ADDR = "[ENDEREÇO]"
+NIF = "Z1454771A"
+ADDR = "Calle Pascual i Genis, 15 5-17, 46002 Valencia"
 EMAIL = "joaopaulo@acedigitallabs.com"
 DATE_PT = "16 de outubro de 2026"
 DATE_EN = "October 16, 2026"
