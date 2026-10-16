@@ -2,12 +2,12 @@
 """Generates the static site. Rename the app or fill placeholders HERE, then run: python3 build.py"""
 import os
 APP = "¡Vamos!"                      # store name may become "Vamos Espanha!" — change only here
-OWNER = "[NOME DO RESPONSÁVEL / EMPRESA]"
+OWNER = "Joao Paulo de Araujo Aquino"
 NIF = "[NIF/NIE]"
 ADDR = "[ENDEREÇO]"
-EMAIL = "[E-MAIL DE CONTATO]"
-DATE_PT = "14 de outubro de 2026"
-DATE_EN = "October 14, 2026"
+EMAIL = "joaopaulo@acedigitallabs.com"
+DATE_PT = "16 de outubro de 2026"
+DATE_EN = "October 16, 2026"
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 CSS = """
@@ -33,7 +33,9 @@ section{max-width:1040px;margin:auto;padding:36px 18px}
 .card{background:#fff;border-radius:18px;padding:18px;border:2px solid #0001}
 .card h3{margin:.2em 0}
 .shots{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
-.shots img{width:220px;border-radius:22px;box-shadow:0 6px 18px #0002;scroll-snap-align:center;flex:none}
+.shots figure{margin:0;flex:0 0 220px;scroll-snap-align:start}
+.shots figcaption{text-align:center;font-weight:700;font-size:.9rem;margin-top:12px}
+.shots img{display:block;width:220px;height:auto;border-radius:22px;box-shadow:0 6px 18px #0002;scroll-snap-align:center;flex:none}
 .contact{text-align:center}
 footer{background:var(--ink);color:#fff;padding:24px 18px;text-align:center;font-size:.9rem}
 footer a{color:var(--yellow);margin:0 8px}
@@ -43,7 +45,7 @@ footer a{color:var(--yellow);margin:0 8px}
 .doc td,.doc th{border:1px solid #0002;padding:6px 8px;vertical-align:top;text-align:left}
 .ph{background:#fff3b0;padding:0 3px;border-radius:4px}
 .meta{color:#6b5a6e}
-@media(min-width:760px){h1{font-size:2.8rem}.hero{flex-direction:row;text-align:left;justify-content:center}.hero img{width:260px}.badges{justify-content:flex-start}.features{grid-template-columns:repeat(3,1fr)}.shots{justify-content:center}}
+@media(min-width:760px){h1{font-size:2.8rem}.hero{flex-direction:row;text-align:left;justify-content:center}.hero img{width:260px}.badges{justify-content:flex-start}.features{grid-template-columns:repeat(3,1fr)}}
 """
 
 def ph(s): return f'<span class="ph">{s}</span>'
@@ -71,10 +73,20 @@ def page(lang, path, title, body, alt):
 # ───────── Landing ─────────
 def landing(lang):
     pre = "../" if lang == "en" else ""
-    shots = "".join(f'<img src="{pre}img/{n}.jpg" alt="{a}" loading="lazy">' for n, a in [
-        ("mapa", "Mapa da Espanha" if lang=="pt" else "Map of Spain"), ("dialogo", "Diálogo com a Lu" if lang=="pt" else "Dialogue with Lu"),
-        ("ligar", "Palavras novas" if lang=="pt" else "New words"), ("passaporte", "Passaporte" if lang=="pt" else "Passport"),
-        ("papelada", "Papelada" if lang=="pt" else "Paperwork")])
+    screenshots = [
+        ("mapa", "Explore a Espanha", "Explore Spain"),
+        ("dialogo", "Diálogos do dia a dia", "Everyday conversations"),
+        ("ligar", "Vocabulário com imagens", "Vocabulary with pictures"),
+        ("papelada", "Espanhol para a papelada", "Spanish for paperwork"),
+        ("passaporte", "Seu passaporte", "Your passport"),
+        ("graduacao", "Celebre suas conquistas", "Celebrate your achievements"),
+        ("configuracoes", "Seu ritmo de estudo", "Your learning pace"),
+    ]
+    shots = "".join(
+        f'<figure><img src="{pre}img/{name}.jpg?v=20261016" alt="{pt if lang == "pt" else en}" '
+        f'width="430" height="932" loading="lazy"><figcaption>{pt if lang == "pt" else en}</figcaption></figure>'
+        for name, pt, en in screenshots
+    )
     if lang == "pt":
         b = f"""<div class="hero"><img src="img/lu.png" alt="Lu, a guia do app"><div>
 <h1>Aprenda o espanhol <span style="color:var(--red)">da Espanha</span> viajando com a Lu</h1>
@@ -89,7 +101,7 @@ def landing(lang):
 <div class="card"><h3>🔁 Revisão dos seus erros</h3><p>O que você erra volta nas próximas lições até você acertar.</p></div>
 <div class="card"><h3>🛂 Carimbos no passaporte</h3><p>Complete regiões, ganhe selos e mantenha sua ofensiva diária.</p></div>
 </div></section>
-<section><h2 style="text-align:center">Por dentro do app</h2><div class="shots">{shots}</div></section>
+<section><h2 style="text-align:center">Por dentro do app</h2><div class="shots" tabindex="0" role="region" aria-label="Capturas do app">{shots}</div></section>
 <section class="contact"><h2>Contato</h2><p>Dúvidas, sugestões ou imprensa: <a href="mailto:{EMAIL}">{EMAIL}</a></p></section>"""
         page("pt", "index.html", f"{APP} — espanhol da Espanha para brasileiros", b, "en/index.html")
     else:
@@ -106,7 +118,7 @@ def landing(lang):
 <div class="card"><h3>🔁 Review your mistakes</h3><p>What you get wrong comes back in later lessons until you get it right.</p></div>
 <div class="card"><h3>🛂 Passport stamps</h3><p>Finish regions, earn seals and keep your daily streak going.</p></div>
 </div><p class="meta" style="text-align:center">The app itself is in Portuguese (Brazil).</p></section>
-<section><h2 style="text-align:center">Inside the app</h2><div class="shots">{shots}</div></section>
+<section><h2 style="text-align:center">Inside the app</h2><div class="shots" tabindex="0" role="region" aria-label="App screenshots">{shots}</div></section>
 <section class="contact"><h2>Contact</h2><p>Questions, feedback or press: <a href="mailto:{EMAIL}">{EMAIL}</a></p></section>"""
         page("en", "en/index.html", f"{APP} — Spain's Spanish for Brazilians", b, "../index.html")
 
@@ -141,7 +153,7 @@ def privacy_pt():
 <li>Registros de compra: pelo prazo exigido pela legislação fiscal e contábil.</li>
 <li>Logs técnicos: pelo período de retenção do provedor.</li></ul>
 <h2>6. Como apagar seus dados</h2>
-<p>Sem conta: desinstale o App (ou limpe os dados do site no navegador) e tudo some do aparelho. Com conta: no App, abra <b>Sua conta → Apagar conta</b>. A conta e o progresso na nuvem são apagados na hora. Se você não tiver mais acesso ao App, peça pelo e-mail <a href="mailto:{EMAIL}">{EMAIL}</a>. Veja <a href="apagar-conta.html">Como apagar sua conta</a>. Apagar a conta <b>não cancela</b> uma assinatura: cancele na App Store ou no Google Play.</p>
+<p>Sem conta: desinstale o App (ou limpe os dados do site no navegador) e tudo some do aparelho. Com conta: no App, abra <b>Configurações → Sua conta → Apagar conta</b>. A conta e o progresso na nuvem são apagados na hora. Se você não tiver mais acesso ao App, peça pelo e-mail <a href="mailto:{EMAIL}">{EMAIL}</a>. Veja <a href="apagar-conta.html">Como apagar sua conta</a>. Apagar a conta <b>não cancela</b> uma assinatura: cancele na App Store ou no Google Play.</p>
 <h2>7. Idade mínima</h2>
 <p>O App é destinado a pessoas com <b>14 anos ou mais</b> (idade de consentimento digital na Espanha, segundo a LOPDGDD), ou com a idade mínima exigida no seu país, se for maior. Se você tiver menos idade, só use o App com autorização e supervisão do seu responsável legal. Para crianças e adolescentes no Brasil, o tratamento segue o melhor interesse do menor (art. 14 da LGPD). Se soubermos que coletamos dados de uma criança sem autorização, vamos apagá-los.</p>
 <h2>8. Seus direitos (RGPD / LOPDGDD, Espanha e UE)</h2>
@@ -181,7 +193,7 @@ def privacy_en():
 <li>Cloud account and progress: while the account exists. Deletion in the App is immediate. Email requests are handled within 30 days.</li>
 <li>Purchase records: as long as tax and accounting law requires.</li>
 <li>Technical logs: for the provider's retention period.</li></ul>
-<h2>6. Deleting your data</h2><p>Without an account: uninstall the App (or clear the site data in your browser) and everything is gone from the device. With an account: in the App, open <b>Sua conta → Apagar conta</b> (Account → Delete account). The account and its cloud progress are deleted immediately. If you can no longer use the App, email <a href="mailto:{EMAIL}">{EMAIL}</a>. See <a href="delete-account.html">How to delete your account</a>. Deleting the account <b>does not cancel</b> a subscription: cancel it in the App Store or Google Play.</p>
+<h2>6. Deleting your data</h2><p>Without an account: uninstall the App (or clear the site data in your browser) and everything is gone from the device. With an account: in the App, open <b>Configurações → Sua conta → Apagar conta</b> (Settings → Account → Delete account). The account and its cloud progress are deleted immediately. If you can no longer use the App, email <a href="mailto:{EMAIL}">{EMAIL}</a>. See <a href="delete-account.html">How to delete your account</a>. Deleting the account <b>does not cancel</b> a subscription: cancel it in the App Store or Google Play.</p>
 <h2>7. Minimum age</h2><p>The App is meant for people <b>aged 14 or over</b> (the digital-consent age in Spain under the LOPDGDD), or the minimum age required in your country if that is higher. If you are younger, use the App only with your parent's or guardian's permission and supervision. If we learn that we collected a child's data without that permission, we will delete it.</p>
 <h2>8. Your rights (GDPR / LOPDGDD)</h2><p>You have the right of access, rectification, erasure, objection, restriction and portability, and the right not to be subject to solely automated decisions. Email <a href="mailto:{EMAIL}">{EMAIL}</a>; we reply within one month. You may also complain to the <b>Spanish Data Protection Agency (AEPD)</b> at <a href="https://www.aepd.es">www.aepd.es</a>.</p>
 <h2>9. Brazil (LGPD)</h2><p>You may request confirmation of processing, access, correction, anonymisation, blocking or deletion, portability, information about sharing, and review of automated decisions (LGPD art. 18). You may also complain to the <b>ANPD</b>. The legal bases we use are contract, legal obligation and legitimate interest.</p>
@@ -243,7 +255,7 @@ def terms_en():
 
 def delete_pages():
     pt = f"""<main class="doc"><h1>Como apagar sua conta do {APP}</h1><p class="meta">Atualizado em {DATE_PT}</p>
-<h2>No App (recomendado)</h2><ol><li>Abra o {APP} e toque no ícone da sua conta.</li><li>Toque em <b>Apagar conta</b>.</li><li>Confirme em <b>Apagar para sempre</b>.</li></ol>
+<h2>No App (recomendado)</h2><ol><li>Abra o {APP} e toque na engrenagem de <b>Configurações</b>, depois em <b>Sua conta</b>.</li><li>Toque em <b>Apagar conta</b>.</li><li>Confirme em <b>Apagar para sempre</b>.</li></ol>
 <p>A exclusão é imediata e permanente: apagamos sua conta (e-mail e senha), seu perfil e todo o progresso salvo na nuvem. Neste aparelho, o App volta para o modo visitante.</p>
 <h2>Por e-mail</h2><p>Se você não consegue usar o App, escreva para <a href="mailto:{EMAIL}?subject=Apagar%20conta">{EMAIL}</a> a partir do e-mail da conta, com o assunto “Apagar conta”. Apagamos em até 30 dias e confirmamos por e-mail.</p>
 <h2>O que é apagado e o que fica</h2><ul><li><b>Apagado</b>: conta, perfil, lições concluídas, XP, ofensiva, carimbos, revisões.</li>
@@ -253,7 +265,7 @@ def delete_pages():
 <p>Mais detalhes na <a href="privacidade.html">Política de Privacidade</a>.</p></main>"""
     page("pt", "apagar-conta.html", f"Apagar conta — {APP}", pt, "en/delete-account.html")
     en = f"""<main class="doc"><h1>How to delete your {APP} account</h1><p class="meta">Updated {DATE_EN}</p>
-<h2>In the App (recommended)</h2><ol><li>Open {APP} and tap your account icon.</li><li>Tap <b>Apagar conta</b> (Delete account).</li><li>Confirm with <b>Apagar para sempre</b> (Delete forever).</li></ol>
+<h2>In the App (recommended)</h2><ol><li>Open {APP} and tap the <b>Configurações</b> (Settings) gear, then <b>Sua conta</b> (Account).</li><li>Tap <b>Apagar conta</b> (Delete account).</li><li>Confirm with <b>Apagar para sempre</b> (Delete forever).</li></ol>
 <p>Deletion is immediate and permanent: we delete your account (email and password), your profile and all progress saved in the cloud. On this device, the App goes back to guest mode.</p>
 <h2>By email</h2><p>If you can't use the App, email <a href="mailto:{EMAIL}?subject=Delete%20account">{EMAIL}</a> from your account address with the subject “Delete account”. We delete within 30 days and confirm by email.</p>
 <h2>What is deleted and what is kept</h2><ul><li><b>Deleted</b>: account, profile, completed lessons, XP, streak, stamps, review items.</li>
