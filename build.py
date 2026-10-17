@@ -55,7 +55,7 @@ def page(lang, path, title, body, alt):
     home = "index.html"
     if lang == "pt":
         nav = f'<a href="privacidade.html">Privacidade</a><a href="termos.html">Termos</a><a class="lang" href="{alt}" hreflang="en">EN</a>'
-        foot = f'<a href="index.html">Início</a><a href="privacidade.html">Política de Privacidade</a><a href="termos.html">Termos e Condições</a><a href="{alt}">English</a>'
+        foot = f'<a href="index.html">Início</a><a href="privacidade.html">Política de Privacidade</a><a href="termos.html">Termos e Condições</a><a href="suporte.html">Suporte</a><a href="{alt}">English</a>'
     else:
         nav = f'<a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a class="lang" href="{alt}" hreflang="pt">PT</a>'
         foot = f'<a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a><a href="{alt}">Português</a>'
@@ -275,8 +275,24 @@ def delete_pages():
 <p>More in the <a href="privacy.html">Privacy Policy</a>.</p></main>"""
     page("en", "en/delete-account.html", f"Delete account — {APP}", en, "../apagar-conta.html")
 
+
+def support_page():
+    name = "Vamos Espanha!"
+    pt = f"""<main class="doc"><h1>Suporte do {name}</h1><p class="meta">Atualizado em 17 de outubro de 2026</p>
+<p>Precisa de ajuda com o {name}? Escreva para <a href="mailto:{EMAIL}?subject=Suporte%20Vamos%20Espanha">{EMAIL}</a>. Respondemos normalmente em até 2 dias úteis. Se puder, conte o modelo do aparelho, a versão do iOS e o que aconteceu.</p>
+<h2>Perguntas frequentes</h2>
+<h3>Como restauro uma compra?</h3><p>No App, abra a engrenagem de <b>Configurações</b> e toque em <b>Restaurar compras</b>. Você também encontra <b>Restaurar compras</b> na tela do Premium. Use a mesma conta Apple (Apple ID) com que fez a compra.</p>
+<h3>Como cancelo a assinatura?</h3><p>A assinatura é gerenciada pela Apple. No iPhone, abra <b>Ajustes</b> → toque no seu nome (<b>Apple ID</b>) → <b>Assinaturas</b> → {name} → <b>Cancelar assinatura</b>. O Premium continua até o fim do período já pago. Apagar o App ou a conta não cancela a assinatura. <a href="https://support.apple.com/pt-br/118428">Ajuda da Apple</a>.</p>
+<h3>Como excluo minha conta?</h3><p>No App, abra <b>Configurações</b> → <b>Sua conta</b> → <b>Apagar conta</b> e confirme em <b>Apagar para sempre</b>. Se não conseguir usar o App, escreva para <a href="mailto:{EMAIL}?subject=Apagar%20conta">{EMAIL}</a>. Veja <a href="apagar-conta.html">Como apagar sua conta</a>.</p>
+<h3>Não estou ouvindo o áudio</h3><p>Confira se o iPhone não está no <b>modo silencioso</b> (chave ou botão de ação na lateral) e se o volume está alto. Se estiver usando fones Bluetooth, verifique se estão conectados. Se continuar sem som, feche e abra o App de novo.</p>
+<h3>Meu progresso fica salvo?</h3><p>Sem conta, o progresso fica salvo só neste aparelho e se perde se você apagar o App. Com uma conta (em <b>Configurações</b> → <b>Sua conta</b>), o progresso é salvo na nuvem e você o recupera ao entrar em outro aparelho ou reinstalar o App.</p>
+<h2>Contato</h2><p><a href="mailto:{EMAIL}">{EMAIL}</a> · {OWNER} · {ADDR}, Espanha</p>
+<p>Veja também a <a href="privacidade.html">Política de Privacidade</a> e os <a href="termos.html">Termos e Condições</a>.</p></main>"""
+    page("pt", "suporte.html", f"Suporte — {name}", pt, "en/index.html")
+
 open(os.path.join(ROOT, "style.css"), "w").write(CSS)
 delete_pages()
+support_page()
 landing("pt"); landing("en"); privacy_pt(); privacy_en(); terms_pt(); terms_en()
 open(os.path.join(ROOT, ".nojekyll"), "w").write("")
 # aliases so /privacy and /terms also work in PT root and /en/privacidade etc.
